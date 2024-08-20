@@ -52,6 +52,21 @@ mainTab:AddDropdown({
         selectedPlayer = game.Players:FindFirstChild(value)
     end
 })
+-- Função para teleportar e matar o jogador
+local function teleportAndKillPlayer(targetPlayer)
+    local myHRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local targetHRP = targetPlayer.Character:WaitForChild("HumanoidRootPart")
+    myHRP.CFrame = CFrame.new(500000, 0, 0)
+    wait(1)
+    local connection
+    connection = game:GetService("RunService").Stepped:Connect(function()
+        myHRP.CFrame = targetHRP.CFrame
+        if targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid") and targetPlayer.Character.Humanoid.Sit then
+            myHRP.CFrame = CFrame.new(500000, 0, 0)
+            connection:Disconnect()
+        end
+    end)
+end
 
 mainTab:AddButton({
     Name = "Matar Jogador [couch kill player]",
