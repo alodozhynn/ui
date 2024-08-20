@@ -1,0 +1,381 @@
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
+local Window = OrionLib:MakeWindow({Name = "Infinityyy Nightscript Brookhaven | Made by alodozhynn 🌠", HidePremium = false, IntroEnabled = true, IntroText = "Nightscript Studios !", SaveConfig = true, ConfigFolder = "OrionTest"})
+local mainTab = Window:MakeTab({
+    Name = "Main/Trolling",
+    Icon = "rbxassetid://8834748103",
+    PremiumOnly = false
+})
+
+local visualTab = Window:MakeTab({
+    Name = "Teleportes + Visual/Cliente",
+    Icon = "rbxassetid://8834748103",
+    PremiumOnly = false
+})
+
+local adminTab = Window:MakeTab({
+    Name = "Admin Scripts",
+    Icon = "rbxassetid://8834748103",
+    PremiumOnly = false
+})
+
+local itemsTab = Window:MakeTab({
+    Name = "Alguns itens",
+    Icon = "rbxassetid://8834748103",
+    PremiumOnly = false
+})
+
+OrionLib:MakeNotification({
+    Name = "Infinityyy was loaded !",
+    Content = "This script was made by Nightscript Studios (alodozhynn)",
+    Image = "rbxassetid://8834748103",
+    Time = 5
+})
+-- Lista de jogadores para selecionar
+local players = game.Players:GetPlayers()
+local selectedPlayer
+
+local dropdownOptions = {}
+for i, player in ipairs(players) do
+    table.insert(dropdownOptions, player.Name)
+end
+
+-- Adiciona a nova seção "Trollar jogadores"
+mainTab:AddSection({
+    Name = "Trollar jogadores"
+})
+
+mainTab:AddDropdown({
+    Name = "Selecionar Jogador",
+    Default = "",
+    Options = dropdownOptions,
+    Callback = function(value)
+        selectedPlayer = game.Players:FindFirstChild(value)
+    end
+})
+
+mainTab:AddButton({
+    Name = "Matar Jogador [couch kill player]",
+    Callback = function()
+        if selectedPlayer then
+            teleportAndKillPlayer(selectedPlayer)
+        else
+            print("Nenhum jogador selecionado.")
+        end
+    end    
+})
+
+mainTab:AddButton({
+    Name = "[Sorry, coming soon]",
+    Callback = function()
+print("Nightscript hello world")
+    end    
+})
+
+-- Atualiza a aba "Teleportes + Visual/Cliente"
+visualTab:AddSection({
+    Name = "Teleporte para outros lugares (brookhaven only)"
+})
+
+visualTab:AddButton({
+    Name = "Delegacia",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-107, 3, 35)
+    end    
+})
+
+visualTab:AddButton({
+    Name = "Hospital",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-333, 4, 36)
+    end    
+})
+
+visualTab:AddButton({
+    Name = "Escola",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-324, 4, 203)
+    end    
+})
+
+visualTab:AddButton({
+    Name = "Banco do Brookhaven",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(12, 3, 268)
+    end    
+})
+
+visualTab:AddButton({
+    Name = "Mercado",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-23, 3, -128)
+    end    
+})
+
+visualTab:AddButton({
+    Name = "Shopping",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(161, 11, -166)
+    end    
+})
+
+visualTab:AddButton({
+    Name = "Aeroporto",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(356, 14, 107)
+    end    
+})
+
+visualTab:AddButton({
+    Name = "Início/Lobby",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(0, 0, 0)
+    end    
+})
+
+-- Adiciona a aba "Alguns itens" com a seção "Itens de lugares"
+itemsTab:AddSection({
+    Name = "Itens de lugares"
+})
+
+itemsTab:AddButton({
+    Name = "Bola de Basquete",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-137, 2, 98)
+    end    
+})
+
+itemsTab:AddButton({
+    Name = "Macas de Hospital",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-343, 2, 34)
+    end    
+})
+
+itemsTab:AddButton({
+    Name = "Aparelho Desconhecido",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-272, 2, 60)
+    end    
+})
+
+itemsTab:AddButton({
+    Name = "Aparelho de Zoom",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-316, 5, 62)
+    end    
+})
+
+itemsTab:AddButton({
+    Name = "Medicamento",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-336, 3, 28)
+    end    
+})
+
+itemsTab:AddButton({
+    Name = "Livro",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-333, 4, 170)
+    end    
+})
+
+itemsTab:AddButton({
+    Name = "Guitarra/Violão",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-384, 17, 212)
+    end    
+})
+
+itemsTab:AddButton({
+    Name = "Cartão do Cofre",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(6, 2, 269)
+    end    
+})
+
+itemsTab:AddButton({
+    Name = "Muleta de Dinheiro",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-11, 16, 275)
+    end    
+})
+
+itemsTab:AddButton({
+    Name = "Armas/Bombas",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-138, -29, 239)
+    end    
+})
+
+itemsTab:AddButton({
+    Name = "Sofá do Club Brooks",
+    Callback = function()
+        myHRP.CFrame = CFrame.new(-83, 19, -130)
+    end    
+})
+
+-- Botões para a aba Admin Scripts
+adminTab:AddButton({
+    Name = "Infinite Yield",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    end    
+})
+
+adminTab:AddButton({
+    Name = "Nameless Admin",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source'))()
+    end    
+}) 
+--- Adiciona a aba "Chat"
+local chatTab = Window:MakeTab({
+    Name = "Chat",
+    Icon = "rbxassetid://8834748103",
+    PremiumOnly = false
+})
+
+-- Adiciona a seção "Chat bypasser"
+chatTab:AddSection({
+    Name = "Chat bypasser"
+})
+
+-- Função para copiar o texto para a área de transferência
+local function copyToClipboard(text)
+    setclipboard(text)
+end
+
+-- Botões para copiar as palavras das redes sociais
+chatTab:AddButton({
+    Name = "Copiar Texto: YouTube",
+    Callback = function()
+        copyToClipboard("Y͜͡o͜͡u͜͡T͜͡u͜͡b͜͡e͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Texto: Instagram",
+    Callback = function()
+        copyToClipboard("I͜͡n͜͡s͜͡t͜͡a͜͡g͜͡r͜͡a͜͡m͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Texto: Tik tok",
+    Callback = function()
+        copyToClipboard("T͜͡i͜͡k͜͡ t͜͡o͜͡k͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Texto: Twitter",
+    Callback = function()
+        copyToClipboard("T͜͡w͜͡i͜͡t͜͡t͜͡e͜͡r͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Texto: Kwai",
+    Callback = function()
+        copyToClipboard("k͜͡w͜͡a͜͡i͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Texto: Discord",
+    Callback = function()
+        copyToClipboard("D͜͡i͜͡s͜͡c͜͡o͜͡r͜͡d͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Texto: WhatsApp",
+    Callback = function()
+        copyToClipboard("w͜͡h͜͡a͜͡t͜͡s͜͡ a͜͡p͜͡p͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Texto: Twitch",
+    Callback = function()
+        copyToClipboard("T͜͡w͜͡i͜͡t͜͡c͜͡h͜͡")
+    end
+})
+
+-- Adiciona a seção "Chat bypasser (números)"
+chatTab:AddSection({
+    Name = "Chat bypasser (números)"
+})
+
+-- Botões para copiar os números de 0 a 9 com os caracteres estilizados
+chatTab:AddButton({
+    Name = "Copiar Número: 0",
+    Callback = function()
+        copyToClipboard("0͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Número: 1",
+    Callback = function()
+        copyToClipboard("1͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Número: 2",
+    Callback = function()
+        copyToClipboard("2͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Número: 3",
+    Callback = function()
+        copyToClipboard("3͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Número: 4",
+    Callback = function()
+        copyToClipboard("4͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Número: 5",
+    Callback = function()
+        copyToClipboard("5͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Número: 6",
+    Callback = function()
+        copyToClipboard("6͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Número: 7",
+    Callback = function()
+        copyToClipboard("7͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Número: 8",
+    Callback = function()
+        copyToClipboard("8͜͡")
+    end
+})
+
+chatTab:AddButton({
+    Name = "Copiar Número: 9",
+    Callback = function()
+        copyToClipboard("9͜͡")
+    end
+})
+-- Inicializando a biblioteca Orion
+OrionLib:Init()
