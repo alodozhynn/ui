@@ -56,7 +56,7 @@ mainTab:AddDropdown({
 local function teleportAndKillPlayer(targetPlayer)
     local myHRP = game.Players.LocalPlayer.Character.HumanoidRootPart
     local targetHRP = targetPlayer.Character:WaitForChild("HumanoidRootPart")
-    myHRP.CFrame = CFrame.new(500000, 0, 0)
+    myHRP.CFrame = CFrame.new(-83, 19, -130)
     wait(1)
     local connection
     connection = game:GetService("RunService").Stepped:Connect(function()
