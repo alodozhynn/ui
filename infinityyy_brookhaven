@@ -85,6 +85,9 @@ mainTab:AddButton({
 print("Nightscript hello world")
     end    
 })
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local myHRP = character:WaitForChild("HumanoidRootPart")
 
 -- Atualiza a aba "Teleportes + Visual/Cliente"
 visualTab:AddSection({
