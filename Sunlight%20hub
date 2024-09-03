@@ -24,8 +24,14 @@ local itemsTab = Window:MakeTab({
     PremiumOnly = false
 })
 
+-- Adicionar a tab "Casas"
+local CasasTab = Window:MakeTab({
+    Name = "Casas",
+    Icon = "rbxassetid://8834748103",
+    PremiumOnly = false
+})
 OrionLib:MakeNotification({
-    Name = "Sunlight y Hub",
+    Name = "Sunlight Y Hub",
     Content = "This script was made by (alodo8888)",
     Image = "rbxassetid://407744305",
     Time = 5
@@ -394,12 +400,6 @@ chatTab:AddButton({
     Callback = function()
         copyToClipboard("9͜͡")
     end
-})
--- Adicionar a tab "Casas"
-local CasasTab = Window:MakeTab({
-    Name = "Casas",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
 })
 
 -- Adicionar a seção "Desbanir" na tab "Casas"
