@@ -292,9 +292,9 @@ chatTab:AddButton({
 })
 
 chatTab:AddButton({
-    Name = "Copiar Texto: Twitter",
+    Name = "Copiar Texto: Bluesky",
     Callback = function()
-        copyToClipboard("T͜͡w͜͡i͜͡t͜͡t͜͡e͜͡r͜͡")
+        copyToClipboard("b͜͡l͜͡u͜͡e͜͡s͜͡k͜͡y͜͡")
     end
 })
 
