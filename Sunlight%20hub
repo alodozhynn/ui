@@ -86,10 +86,101 @@ mainTab:AddButton({
 })
 
 mainTab:AddButton({
-    Name = "[Sorry, coming soon]",
+    Name = "Working on this function, please wait.",
     Callback = function()
-print("Nightscript hello world")
+print("aaaaaa")
     end    
+})
+-- Assumindo que `Player`, `Mouse`, e outras variáveis já estão definidas
+
+-- Função para ativar o voo
+local function FLY()
+    FLYING = true
+    local BG = Instance.new('BodyGyro', T)
+    local BV = Instance.new('BodyVelocity', T)
+    BG.P = 9e4
+    BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+    BG.CFrame = T.CFrame
+    BV.Velocity = Vector3.new(0, 0.1, 0)
+    BV.MaxForce = Vector3.new(9e9, 9e9, 9e9)
+    
+    spawn(function()
+        repeat
+            wait()
+            Player.Character.Humanoid.PlatformStand = true
+            if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
+                SPEED = 50
+            elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+                SPEED = 0
+            end
+            
+            if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
+                BV.Velocity = ((workspace.CurrentCamera.CoordinateFrame.LookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+                lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+            elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
+                BV.Velocity = ((workspace.CurrentCamera.CoordinateFrame.LookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+            else
+                BV.Velocity = Vector3.new(0, 0.1, 0)
+            end
+            BG.CFrame = workspace.CurrentCamera.CoordinateFrame
+        until not FLYING
+        CONTROL = {F = 0, B = 0, L = 0, R = 0}
+        lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+        SPEED = 0
+        BG:Destroy()
+        BV:Destroy()
+        Player.Character.Humanoid.PlatformStand = false
+    end)
+end
+
+-- Função para desativar o voo
+local function NOFLY()
+    FLYING = false
+    Player.Character.Humanoid.PlatformStand = false
+end
+
+-- Eventos de teclado
+Mouse.KeyDown:Connect(function(KEY)
+    if KEY:lower() == 'w' then
+        CONTROL.F = SPEED
+    elseif KEY:lower() == 's' then
+        CONTROL.B = -SPEED
+    elseif KEY:lower() == 'a' then
+        CONTROL.L = -SPEED 
+    elseif KEY:lower() == 'd' then 
+        CONTROL.R = SPEED
+    end
+end)
+
+Mouse.KeyUp:Connect(function(KEY)
+    if KEY:lower() == 'w' then
+        CONTROL.F = 0
+    elseif KEY:lower() == 's' then
+        CONTROL.B = 0
+    elseif KEY:lower() == 'a' then
+        CONTROL.L = 0
+    elseif KEY:lower() == 'd' then
+        CONTROL.R = 0
+    end
+end)
+
+-- Adicionando a nova seção com o toggle
+local TogglesLocais = Window:MakeTab({
+    Name = "Toggles locais",
+    Icon = "rbxassetid://4483345998", -- ícone opcional
+    PremiumOnly = false
+})
+
+TogglesLocais:AddToggle({
+    Name = "Toggle voar v1",
+    Default = false,
+    Callback = function(value)
+        if value then
+            FLY()
+        else
+            NOFLY()
+        end
+    end
 })
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
