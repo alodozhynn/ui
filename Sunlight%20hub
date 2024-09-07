@@ -6,7 +6,7 @@ local mainTab = Window:MakeTab({
     PremiumOnly = false
 })
 
-local visualTab = Window:MakeTab({
+local tpTab = Window:MakeTab({
     Name = "Teleportes",
     Icon = "rbxassetid://8834748103",
     PremiumOnly = false
@@ -191,56 +191,56 @@ visualTab:AddSection({
     Name = "Teleporte para outros lugares (brookhaven only)"
 })
 
-visualTab:AddButton({
+tpTab:AddButton({
     Name = "Delegacia/police",
     Callback = function()
         myHRP.CFrame = CFrame.new(-107, 3, 35)
     end    
 })
 
-visualTab:AddButton({
+tpTab:AddButton({
     Name = "Hospital",
     Callback = function()
         myHRP.CFrame = CFrame.new(-333, 4, 36)
     end    
 })
 
-visualTab:AddButton({
+tpTab:AddButton({
     Name = "Escola/school",
     Callback = function()
         myHRP.CFrame = CFrame.new(-324, 4, 203)
     end    
 })
 
-visualTab:AddButton({
+tpTab:AddButton({
     Name = "Banco do Brookhaven/brookhaven bank",
     Callback = function()
         myHRP.CFrame = CFrame.new(12, 3, 268)
     end    
 })
 
-visualTab:AddButton({
+tpTab:AddButton({
     Name = "Mercado/market",
     Callback = function()
         myHRP.CFrame = CFrame.new(-23, 3, -128)
     end    
 })
 
-visualTab:AddButton({
+tpTab:AddButton({
     Name = "Shopping/mall",
     Callback = function()
         myHRP.CFrame = CFrame.new(161, 11, -166)
     end    
 })
 
-visualTab:AddButton({
+tpTab:AddButton({
     Name = "Aeroporto/airport",
     Callback = function()
         myHRP.CFrame = CFrame.new(356, 14, 107)
     end    
 })
 
-visualTab:AddButton({
+tpTab:AddButton({
     Name = "Início/Lobby",
     Callback = function()
         myHRP.CFrame = CFrame.new(0, 0, 0)
@@ -345,7 +345,7 @@ adminTab:AddButton({
 }) 
 --- Adiciona a aba "Chat"
 local chatTab = Window:MakeTab({
-    Name = "Chat",
+    Name = "Chat Things",
     Icon = "rbxassetid://8834748103",
     PremiumOnly = false
 })
