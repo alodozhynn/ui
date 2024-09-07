@@ -7,7 +7,7 @@ local mainTab = Window:MakeTab({
 })
 
 local visualTab = Window:MakeTab({
-    Name = "Teleportes + Visual/Cliente",
+    Name = "Visual/cliente",
     Icon = "rbxassetid://8834748103",
     PremiumOnly = false
 })
