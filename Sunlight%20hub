@@ -91,6 +91,45 @@ mainTab:AddButton({
 print("Nightscript hello world")
     end    
 })
+-- Cria a seção 'Toggles' na mainTab
+local togglesSection = mainTab:CreateSection("Toggles")
+
+-- Variáveis para o toggle
+local noSit
+local nositDied
+
+-- Função que desativa a ação de sentar
+local function noSitFunc()
+    wait()
+    local humanoid = Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid")
+    if humanoid and humanoid.Sit then
+        humanoid.Sit = false
+    end
+end
+
+-- Adiciona o toggle para "Não se sentar em itens/carros" após a seção
+local noSitToggle = mainTab:CreateToggle("Não se sentar em itens/carros", false, function(state)
+    if state then
+        -- Ativa a funcionalidade
+        if noSit then noSit:Disconnect() end
+        if nositDied then nositDied:Disconnect() end
+        noSit = Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):GetPropertyChangedSignal("Sit"):Connect(noSitFunc)
+        
+        local function nositDiedFunc()
+            repeat wait() until Players.LocalPlayer.Character ~= nil and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+            noSit:Disconnect()
+            noSit = Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):GetPropertyChangedSignal("Sit"):Connect(noSitFunc)
+        end
+        nositDied = Players.LocalPlayer.CharacterAdded:Connect(nositDiedFunc)
+    else
+        -- Desativa a funcionalidade
+        if noSit then noSit:Disconnect() end
+    end
+end)
+
+-- Posiciona o toggle na mainTab após a seção
+mainTab:AddItem(noSitToggle, togglesSection)
+
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local myHRP = character:WaitForChild("HumanoidRootPart")
