@@ -2,11 +2,11 @@ local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shle
 local Window = OrionLib:MakeWindow({Name = "☀ Sunlight y Hub ☀| Brookhaven RP 🏡 | Made by alodo8888", HidePremium = false, IntroEnabled = true, IntroText = "Sunlight is loading...", SaveConfig = true, ConfigFolder = "OrionTest"})
 local mainTab = Window:MakeTab({
     Name = "Main/Trolling",
-    Icon = "rbxassetid://8834748103",
+    Icon = "rbxassetid://7733960981",
     PremiumOnly = false
 })
 
-local visualTab = Window:MakeTab({
+local jlTab = Window:MakeTab({
     Name = "Visual/cliente",
     Icon = "rbxassetid://8834748103",
     PremiumOnly = false
@@ -31,7 +31,7 @@ local CasasTab = Window:MakeTab({
     PremiumOnly = false
 })
 OrionLib:MakeNotification({
-    Name = "Sunlight Y Hub",
+    Name = "Sunlight y Hub",
     Content = "This script was made by (alodo8888)",
     Image = "rbxassetid://407744305",
     Time = 5
