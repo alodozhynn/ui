@@ -1,39 +1,40 @@
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
 local Window = OrionLib:MakeWindow({Name = "☀ Sunlight y Hub ☀| Brookhaven RP 🏡 | Made by alodo8888", HidePremium = false, IntroEnabled = true, IntroText = "Sunlight is loading...", SaveConfig = true, ConfigFolder = "OrionTest"})
+
 local mainTab = Window:MakeTab({
     Name = "Main/Trolling",
     Icon = "rbxassetid://7733960981",
     PremiumOnly = false
 })
 
-local jlTab = Window:MakeTab({
-    Name = "Visual/cliente",
-    Icon = "rbxassetid://8834748103",
+local playerTab = Window:MakeTab({
+    Name = "LocalPlayer",
+    Icon = "rbxassetid://7743875962",
     PremiumOnly = false
 })
 
 local adminTab = Window:MakeTab({
     Name = "Admin Scripts",
-    Icon = "rbxassetid://8834748103",
+    Icon = "rbxassetid://7733916988",
     PremiumOnly = false
 })
 
 local itemsTab = Window:MakeTab({
-    Name = "Alguns itens",
-    Icon = "rbxassetid://8834748103",
+    Name = "Some Items",
+    Icon = "rbxassetid://7733946818",
     PremiumOnly = false
 })
 
 -- Adicionar a tab "Casas"
 local CasasTab = Window:MakeTab({
-    Name = "Casas",
-    Icon = "rbxassetid://8834748103",
+    Name = "Casas/houses",
+    Icon = "rbxassetid://7733992528",
     PremiumOnly = false
 })
 OrionLib:MakeNotification({
     Name = "Sunlight y Hub",
     Content = "This script was made by (alodo8888)",
-    Image = "rbxassetid://407744305",
+    Image = "rbxassetid://7743875962",
     Time = 5
 })
 -- Lista de jogadores para selecionar
@@ -86,9 +87,9 @@ mainTab:AddButton({
 })
 
 mainTab:AddButton({
-    Name = "[Sorry, coming soon]",
+    Name = "Nothing here stil...",
     Callback = function()
-print("Nightscript hello world")
+print("Chat gpt, vamos mexer aq")
     end    
 })
 local player = game.Players.LocalPlayer
