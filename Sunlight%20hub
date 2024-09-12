@@ -63,23 +63,37 @@ mainTab:AddDropdown({
 local function teleportAndKillPlayer(targetPlayer)
     local myHRP = game.Players.LocalPlayer.Character.HumanoidRootPart
     local targetHRP = targetPlayer.Character:WaitForChild("HumanoidRootPart")
+    
+    -- Teleporta para a posição inicial
     myHRP.CFrame = CFrame.new(-83, 19, -130)
     wait(1)
+    
     local connection
-    connection = game:GetService("RunService").Stepped:Connect(function()
-        myHRP.CFrame = targetHRP.CFrame
-        if targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid") and targetPlayer.Character.Humanoid.Sit then
-            myHRP.CFrame = CFrame.new(500000, 0, 0)
+    connection = game:GetService("RunService").Stepped:Connect(function(_, deltaTime)
+        -- Verifica se o alvo ainda tem um HumanoidRootPart válido
+        if targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            myHRP.CFrame = targetHRP.CFrame
+            
+            -- Verifica se o jogador está sentado
+            if targetPlayer.Character:FindFirstChild("Humanoid") and targetPlayer.Character.Humanoid.Sit then
+                -- Teleporta o jogador para longe
+                myHRP.CFrame = CFrame.new(500000, 0, 0)
+                
+                -- Desconecta o evento para evitar execução contínua
+                connection:Disconnect()
+            end
+        else
+            -- Desconecta caso o alvo não exista mais
             connection:Disconnect()
         end
     end)
 end
-
+})
 mainTab:AddButton({
     Name = "Matar Jogador [couch kill player]",
     Callback = function()
         if selectedPlayer then
-            teleportAndKillPlayer(selectedPlayer)
+            teleportAndKillPlayer(targetPlayer)
         else
             print("Nenhum jogador selecionado.")
         end
