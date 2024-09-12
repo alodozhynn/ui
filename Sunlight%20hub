@@ -61,29 +61,35 @@ mainTab:AddDropdown({
 })
 -- Função para teleportar e matar o jogador
 local function teleportAndKillPlayer(targetPlayer)
-    local myHRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local myHRP = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+    local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
     local targetHRP = targetPlayer.Character:WaitForChild("HumanoidRootPart")
-    
+
     -- Teleporta para a posição inicial
     myHRP.CFrame = CFrame.new(-83, 19, -130)
+
+    -- Aguarda 1 segundo
     wait(1)
-    
+
+    -- Força o jogador a pular após o tempo de espera
+    humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+
     local connection
-    connection = game:GetService("RunService").Stepped:Connect(function(_, deltaTime)
-        -- Verifica se o alvo ainda tem um HumanoidRootPart válido
+    connection = game:GetService("RunService").Stepped:Connect(function()
+        -- Continua teleportando para o jogador alvo
         if targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
             myHRP.CFrame = targetHRP.CFrame
-            
-            -- Verifica se o jogador está sentado
+
+            -- Verifica se o jogador alvo está sentado
             if targetPlayer.Character:FindFirstChild("Humanoid") and targetPlayer.Character.Humanoid.Sit then
-                -- Teleporta o jogador para longe
+                -- Teleporta o jogador para longe se ele estiver sentado
                 myHRP.CFrame = CFrame.new(500000, 0, 0)
-                
+
                 -- Desconecta o evento para evitar execução contínua
                 connection:Disconnect()
             end
         else
-            -- Desconecta caso o alvo não exista mais
+            -- Desconecta caso o alvo não tenha mais HumanoidRootPart
             connection:Disconnect()
         end
     end)
