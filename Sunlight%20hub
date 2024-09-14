@@ -7,8 +7,8 @@ local mainTab = Window:MakeTab({
     PremiumOnly = false
 })
 
-local playerTab = Window:MakeTab({
-    Name = "LocalPlayer",
+local trolling2Tab = Window:MakeTab({
+    Name = "Trolling 2",
     Icon = "rbxassetid://7743875962",
     PremiumOnly = false
 })
@@ -66,35 +66,22 @@ local function teleportAndKillPlayer(targetPlayer)
     local targetHRP = targetPlayer.Character:WaitForChild("HumanoidRootPart")
 
     -- Teleporta para a posição inicial
+    -- Função para teleportar e matar o jogador
+local function teleportAndKillPlayer(targetPlayer)
+    local myHRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local targetHRP = targetPlayer.Character:WaitForChild("HumanoidRootPart")
     myHRP.CFrame = CFrame.new(-83, 19, -130)
-
-    -- Aguarda 1 segundo
     wait(1)
-
-    -- Força o jogador a pular após o tempo de espera
-    humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-
     local connection
     connection = game:GetService("RunService").Stepped:Connect(function()
-        -- Continua teleportando para o jogador alvo
-        if targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            myHRP.CFrame = targetHRP.CFrame
-
-            -- Verifica se o jogador alvo está sentado
-            if targetPlayer.Character:FindFirstChild("Humanoid") and targetPlayer.Character.Humanoid.Sit then
-                -- Teleporta o jogador para longe se ele estiver sentado
-                myHRP.CFrame = CFrame.new(500000, 0, 0)
-
-                -- Desconecta o evento para evitar execução contínua
-                connection:Disconnect()
-            end
-        else
-            -- Desconecta caso o alvo não tenha mais HumanoidRootPart
+        myHRP.CFrame = targetHRP.CFrame
+        if targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid") and targetPlayer.Character.Humanoid.Sit then
+            myHRP.CFrame = CFrame.new(500000, 0, 0)
             connection:Disconnect()
         end
     end)
 end
-})
+
 mainTab:AddButton({
     Name = "Matar Jogador [couch kill player]",
     Callback = function()
@@ -107,9 +94,9 @@ mainTab:AddButton({
 })
 
 mainTab:AddButton({
-    Name = "Nothing here stil...",
+    Name = "Trolling 2 tab coming soon.",
     Callback = function()
-print("Chat gpt, vamos mexer aq")
+print("Trolling 2 coming soon")
     end    
 })
 local player = game.Players.LocalPlayer
