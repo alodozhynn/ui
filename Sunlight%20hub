@@ -442,6 +442,193 @@ end
 CasasTab:AddButton({
     Name = "Ser desbanido de uma casa/unban yourself of a house",
     Callback = removerBannedLots
+-- Função para copiar as roupas
+local function copyClothes(fromPlayer, toPlayer)
+    local fromCharacter = fromPlayer.Character
+    local toCharacter = toPlayer.Character
+
+    if fromCharacter and toCharacter then
+        -- Remove roupas antigas
+        for _, child in ipairs(toCharacter:GetChildren()) do
+            if child:IsA("Shirt") or child:IsA("Pants") then
+                child:Destroy()
+            end
+        end
+
+        -- Copia roupas
+        local shirt = fromCharacter:FindFirstChildOfClass("Shirt")
+        if shirt then
+            local clonedShirt = shirt:Clone()
+            clonedShirt.Parent = toCharacter
+        end
+
+        local pants = fromCharacter:FindFirstChildOfClass("Pants")
+        if pants then
+            local clonedPants = pants:Clone()
+            clonedPants.Parent = toCharacter
+        end
+    end
+end
+
+-- Função para copiar os acessórios
+local function copyAccessories(fromPlayer, toPlayer)
+    local fromCharacter = fromPlayer.Character
+    local toCharacter = toPlayer.Character
+
+    if fromCharacter and toCharacter then
+        -- Remove acessórios antigos
+        for _, child in ipairs(toCharacter:GetChildren()) do
+            if child:IsA("Accessory") then
+                child:Destroy()
+            end
+        end
+
+        -- Copia acessórios
+        for _, child in ipairs(fromCharacter:GetChildren()) do
+            if child:IsA("Accessory") then
+                local clonedAccessory = child:Clone()
+                clonedAccessory.Parent = toCharacter
+            end
+        end
+    end
+end
+
+-- Função para copiar a animação
+local function copyAnimation(fromPlayer, toPlayer)
+    local fromCharacter = fromPlayer.Character
+    local toCharacter = toPlayer.Character
+
+    if fromCharacter and toCharacter then
+        local animationScript = fromCharacter:FindFirstChild("AnimationLocalCharacterScript")
+        if animationScript then
+            local clonedScript = animationScript:Clone()
+            clonedScript.Parent = toCharacter
+        end
+    end
+end
+
+-- Função para copiar a cor do corpo
+local function copyBodyColor(fromPlayer, toPlayer)
+    local fromCharacter = fromPlayer.Character
+    local toCharacter = toPlayer.Character
+
+    if fromCharacter and toCharacter then
+        local bodyColors = fromCharacter:FindFirstChild("Body Colors")
+        if bodyColors then
+            -- Remove cor de corpo antiga
+            local existingBodyColors = toCharacter:FindFirstChild("Body Colors")
+            if existingBodyColors then
+                existingBodyColors:Destroy()
+            end
+
+            -- Copia a cor do corpo
+            local clonedBodyColors = bodyColors:Clone()
+            clonedBodyColors.Parent = toCharacter
+        end
+    end
+end
+
+-- Função para copiar o cabelo
+local function copyHair(fromPlayer, toPlayer)
+    local fromCharacter = fromPlayer.Character
+    local toCharacter = toPlayer.Character
+
+    if fromCharacter and toCharacter then
+        -- Remove cabelo antigo
+        for _, child in ipairs(toCharacter:GetChildren()) do
+            if child:IsA("Accessory") and child.Name == "Hair" then
+                child:Destroy()
+            end
+        end
+
+        -- Copia cabelo
+        for _, child in ipairs(fromCharacter:GetChildren()) do
+            if child:IsA("Accessory") and child.Name == "Hair" then
+                local clonedHair = child:Clone()
+                clonedHair.Parent = toCharacter
+            end
+        end
+    end
+end
+
+-- Adiciona a TextBox para selecionar o jogador
+trolling2Tab:AddTextbox({
+    Name = "Select target player",
+    Default = "Enter player name",
+    TextDisappear = true,
+    Callback = function(Value)
+        selectedPlayer = game.Players:FindFirstChild(Value)
+        if selectedPlayer then
+            print("Selected player: " .. selectedPlayer.Name)
+        else
+            print("Player not found.")
+        end
+    end
+})
+
+-- Botão para copiar roupas
+trolling2Tab:AddButton({
+    Name = "Copy Player Clothes",
+    Callback = function()
+        if selectedPlayer then
+            copyClothes(selectedPlayer, localPlayer)
+            print("Clothes copied.")
+        else
+            print("Select a player first.")
+        end
+    end
+})
+
+-- Botão para copiar acessórios
+trolling2Tab:AddButton({
+    Name = "Copy Player Accessories",
+    Callback = function()
+        if selectedPlayer then
+            copyAccessories(selectedPlayer, localPlayer)
+            print("Accessories copied.")
+        else
+            print("Select a player first.")
+        end
+    end
+})
+
+-- Botão para copiar animação
+trolling2Tab:AddButton({
+    Name = "Copy Player Animation",
+    Callback = function()
+        if selectedPlayer then
+            copyAnimation(selectedPlayer, localPlayer)
+            print("Animation copied.")
+        else
+            print("Select a player first.")
+        end
+    end
+})
+
+-- Botão para copiar a cor do corpo
+trolling2Tab:AddButton({
+    Name = "Copy Player Body Color",
+    Callback = function()
+        if selectedPlayer then
+            copyBodyColor(selectedPlayer, localPlayer)
+            print("Body color copied.")
+        else
+            print("Select a player first.")
+        end
+    end
+})
+
+-- Botão para copiar o cabelo
+trolling2Tab:AddButton({
+    Name = "Copy Player Hair",
+    Callback = function()
+        if selectedPlayer then
+            copyHair(selectedPlayer, localPlayer)
+            print("Hair copied.")
+        else
+            print("Select a player first.")
+        end
+    end
 })
 -- Inicializando a biblioteca Orion
 OrionLib:Init()
