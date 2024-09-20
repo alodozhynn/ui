@@ -59,12 +59,6 @@ mainTab:AddDropdown({
         selectedPlayer = game.Players:FindFirstChild(value)
     end
 })
--- Função para teleportar e matar o jogador
-local function teleportAndKillPlayer(targetPlayer)
-    local myHRP = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
-    local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
-    local targetHRP = targetPlayer.Character:WaitForChild("HumanoidRootPart")
-
     -- Teleporta para a posição inicial
     -- Função para teleportar e matar o jogador
 local function teleportAndKillPlayer(targetPlayer)
