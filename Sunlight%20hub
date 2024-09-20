@@ -451,84 +451,38 @@ local VehiclesTab = Window:MakeTab({
     PremiumOnly = false
 })
 
--- Adicionar a seção "Wheel Remove" na aba "Vehicles"
+-- Adicionar a seção "" na aba "Vehicles"
 VehiclesTab:AddSection({
-    Name = "Wheel Remove"
+    Name = "Vehicles 1"
 })
 
 -- Função para remover as rodas do carro do jogador
-local function removeWheels()
-    local player = game.Players.LocalPlayer
-    local yourName = player.Name
+-- Função para deletar a pasta "NoCarsRegions" do ReplicatedStorage
+local function deleteNoCarsRegions()
+    local noCarsRegions = game:GetService("ReplicatedStorage"):FindFirstChild("NoCarsRegions")
+    
+    if noCarsRegions then
+        noCarsRegions:Destroy()
 
-    for _, vehicle in pairs(workspace.Vehicles:GetChildren()) do
-        local owner = vehicle:FindFirstChild("Owner")
-        
-        if owner and owner.Value == yourName then
-            local body = vehicle:FindFirstChild("Body")
-            if body then
-                local wheelFR = body:FindFirstChild("WheelFR")
-                local wheelFL = body:FindFirstChild("WheelFL")
-                local wheelBR = body:FindFirstChild("WheelBR")
-                local wheelBL = body:FindFirstChild("WheelBL")
-
-                if wheelFR and wheelFL and wheelBR and wheelBL then
-                    wheelFR:Destroy()
-                    wheelFL:Destroy()
-                    wheelBR:Destroy()
-                    wheelBL:Destroy()
-                    
-                    OrionLib:MakeNotification({
-                        Name = "Rodas removidas",
-                        Content = "As rodas foram removidas do seu carro.",
-                        Image = "rbxassetid://7733708835",
-                        Time = 5
-                    })
-                end
-            end
-        end
-    end
-end
-
--- Adicionar botão "Delete car wheels <your car>" na seção "Wheel Remove"
-VehiclesTab:AddButton({
-    Name = "Delete car wheels <your car>",
-    Callback = removeWheels
-})
-
--- Adicionar a seção "Delete All Cars" na aba "Vehicles"
-VehiclesTab:AddSection({
-    Name = "Delete All Cars"
-})
-
--- Função para deletar todos os carros visuais
-local function deleteAllCars()
-    local vehicles = workspace:FindFirstChild("Vehicles")
-    if vehicles then
-        for _, vehicle in pairs(vehicles:GetChildren()) do
-            vehicle:Destroy()
-        end
-
+        -- Notificação de sucesso
         OrionLib:MakeNotification({
-            Name = "Todos os carros deletados",
-            Content = "Todos os carros visuais foram deletados.",
+            Name = "Pasta deletada",
+            Content = "A pasta 'NoCarsRegions' foi deletada.",
             Image = "rbxassetid://7733708835",
             Time = 5
         })
     else
+        -- Notificação de erro
         OrionLib:MakeNotification({
-            Name = "Nenhum carro encontrado",
-            Content = "Não foi encontrada a pasta 'Vehicles' no workspace.",
+            Name = "Pasta não encontrada",
+            Content = "A pasta 'NoCarsRegions' não foi encontrada.",
             Image = "rbxassetid://7733708835",
             Time = 5
         })
     end
 end
 
--- Adicionar botão "Delete all cars <visual>" na seção "Delete All Cars"
-VehiclesTab:AddButton({
-    Name = "Delete all cars <visual>",
-    Callback = deleteAllCars
+
 })
 -- Inicializando a biblioteca Orion
 OrionLib:Init()
