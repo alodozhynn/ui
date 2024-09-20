@@ -532,5 +532,3 @@ VehiclesTab:AddButton({
 })
 -- Inicializando a biblioteca Orion
 OrionLib:Init()
--- Destruindo a biblioteca Orion
-OrionLib:Destroy()
