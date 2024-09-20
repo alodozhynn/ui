@@ -1,5 +1,5 @@
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
-local Window = OrionLib:MakeWindow({Name = "☀ Sunlight y Hub ☀| Brookhaven RP 🏡 | Made by alodo8888", HidePremium = false, IntroEnabled = true, IntroText = "Sunlight is loading...", SaveConfig = true, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "Sunlight Hub 1.9 | Brookhaven RP 🏡 | Made by alodo8888", HidePremium = false, IntroEnabled = true, IntroText = "Sunlight is loading...", SaveConfig = true, ConfigFolder = "OrionTest"})
 
 local mainTab = Window:MakeTab({
     Name = "Main/Trolling",
@@ -443,45 +443,7 @@ end
 CasasTab:AddButton({
     Name = "Ser desbanido de uma casa/unban yourself of a house",
     Callback = removerBannedLots
-
--- Adicionar a aba "Vehicles"
-local VehiclesTab = Window:MakeTab({
-    Name = "Vehicles",
-    Icon = "rbxassetid://7733708835",  -- Ícone de carro
-    PremiumOnly = false
-})
-
--- Adicionar a seção "" na aba "Vehicles"
-VehiclesTab:AddSection({
-    Name = "Vehicles 1"
-})
-
--- Função para remover as rodas do carro do jogador
--- Função para deletar a pasta "NoCarsRegions" do ReplicatedStorage
-local function deleteNoCarsRegions()
-    local noCarsRegions = game:GetService("ReplicatedStorage"):FindFirstChild("NoCarsRegions")
-    
-    if noCarsRegions then
-        noCarsRegions:Destroy()
-
-        -- Notificação de sucesso
-        OrionLib:MakeNotification({
-            Name = "Pasta deletada",
-            Content = "A pasta 'NoCarsRegions' foi deletada.",
-            Image = "rbxassetid://7733708835",
-            Time = 5
-        })
-    else
-        -- Notificação de erro
-        OrionLib:MakeNotification({
-            Name = "Pasta não encontrada",
-            Content = "A pasta 'NoCarsRegions' não foi encontrada.",
-            Image = "rbxassetid://7733708835",
-            Time = 5
-        })
-    end
 end
-
 
 })
 -- Inicializando a biblioteca Orion
