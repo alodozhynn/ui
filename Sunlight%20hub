@@ -443,28 +443,6 @@ end
 CasasTab:AddButton({
     Name = "Ser desbanido de uma casa/unban yourself of a house",
     Callback = removerBannedLots
--- Função para carregar o script R6
-local function loadR6Script()
-    local success, result = pcall(function()
-        -- URL com o caractere ' intacto
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/alodozhynn/izekai-r/refs/heads/main/Izekai's%20R6.lua"))()
-    end)
-    if not success then
-        print("R6 script can't load, sorry.")
-    end
-end
-
--- Adiciona a seção "R6 Transformation"
-trolling2Tab:AddSection({
-    Name = "R6 Transformation"
-})
-
--- Adiciona o botão "Turn into R6"
-trolling2Tab:AddButton({
-    Name = "Turn into R6",
-    Callback = function()
-        loadR6Script()
-    end
 })
 -- Inicializando a biblioteca Orion
 OrionLib:Init()
